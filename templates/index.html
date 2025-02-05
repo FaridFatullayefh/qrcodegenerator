@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEJQ3Wpw6Xqf4OW3bbMQjdx8fn/WgW6hM6BwZlYH6dHKhg58kcN1p9XQkE6Ih" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <div class="container bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-center text-3xl font-bold text-green-500 mb-8">QR Code Generator</h1>
+        <form method="POST" class="mb-6">
+            <div class="mb-4">
+                <label for="data" class="block text-sm font-medium text-gray-700">Enter Data (Text, URL, etc.):</label>
+                <input type="text" id="data" name="data" class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                    required>
+            </div>
+            <button type="submit"
+                class="w-full py-2 bg-green-500 text-white font-semibold rounded-md hover:bg-green-600 transition duration-300">Generate
+                QR Code</button>
+        </form>
+
+        {% if qr_code_data %}
+        <div class="text-center">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Your Generated QR Code:</h3>
+            <img src="data:image/png;base64,{{ qr_code_data }}" alt="QR Code" class="mx-auto mb-4" />
+            <a href="data:image/png;base64,{{ qr_code_data }}" download="qrcode.png">
+                <button
+                    class="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition duration-300">Download
+                    QR Code</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq0wv7Y6m1f3zY3+/24k+gM5X4lquUewMfK0txBgnlI6Eey5T" crossorigin="anonymous"></script>
+</body>
+
+</html>
